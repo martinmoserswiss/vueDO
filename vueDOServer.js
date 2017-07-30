@@ -1,11 +1,13 @@
-#!/usr/bin/env nodejs
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
-}).listen(8080, 'localhost');
-app.get('/',function(req,res){
-  res.sendFile(path.join('/index.html'));
-  //__dirname : It will resolve to your project folder.
+var express = require('express');
+var path = require('path');
+var app = express();
+
+app.use('/dist', express.static(__dirname + '/dist'));
+
+app.get('/', function(req, res) {
+	res.sendFile(path.join(__dirname+'/index.html'));
 });
-console.log('Server running at http://localhost:8080/');
+
+app.listen(8080, function() {
+	console.log("sali");
+})
